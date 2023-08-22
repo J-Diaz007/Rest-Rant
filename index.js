@@ -2,6 +2,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+//Imports the router from the places.js file
+app.use('/places', require('./controllers/places'))
+
 //Homepage
 app.get('/', (req, res) => {
     res.send("Sup Y'all")
