@@ -43,3 +43,11 @@ Node Modules: method-override, dotenv, express-react-views
 | comment 	 | String  |
 | reviewer	 | String  |         
 
+## Planning
+### User Stories
+TBD
+
+### Wireframes
+TBD
+
+## Notes
