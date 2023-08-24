@@ -24,23 +24,22 @@ Node Modules: method-override, dotenv, express-react-views
 
 ## Database
 ### Places
-Field	Type
-_id	Object ID
-name	String
-city	String
-state	String
-cuisines	String
-pic	String
+| Field	   | Type      |
+| :------: | :-------: |
+| _id	   | Object ID |
+| name	   | String |
+| city	   | String |
+| state    | String |
+| cuisines | String |
+| pic	   | String |
 
 ### Rants
-Field	Type
-_id	Object ID
-place_id	ref(places) Object_Id
-rant	Boolean
-rating	Number
-comment	String
-reviewer	String
+| Field      |	Type                 |
+| :--------: | :-------------------: |
+| _id	     | Object ID             |
+| place_id	 | ref(places) Object_Id |
+| rant	     | Boolean |
+| rating	 | Number  |
+| comment 	 | String  |
+| reviewer	 | String  |         
 
-| Attempt | #1    | #2    |
-| :-----: | :---: | :---: |
-| Seconds | 301   | 283   |
