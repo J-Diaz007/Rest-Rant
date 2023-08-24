@@ -2,12 +2,17 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+//Defines the view engine used (JSX in this case)
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+
 //Imports the router from the places.js file
 app.use('/places', require('./controllers/places'))
 
-//Homepage
+//Renders Homepage (home.jsx file)
 app.get('/', (req, res) => {
-    res.send("Hey You!")
+    res.render("home")
 })
 
 
@@ -20,6 +25,4 @@ app.get('*', (req, res) => {
 })
 
 
-
 app.listen(process.env.PORT)
-
