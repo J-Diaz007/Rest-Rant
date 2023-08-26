@@ -1,20 +1,26 @@
+//Modules & Globals
 require('dotenv').config()
 const express = require('express')
 const app = express()
 
+//Express Settings
+app.set('views', __dirname + '/views')
 //Defines the view engine used (JSX in this case)
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+//Lets Express know you are calling the 'static' or public folder
+app.use(express.static('public'))
 
 
 //Imports the router from the places.js file
+//Controllers & Routes
 app.use('/places', require('./controllers/places'))
+
 
 //Renders Homepage (home.jsx file)
 app.get('/', (req, res) => {
     res.render('home')
 })
-
 
 
 //Wildcard route with 404 error (for page that doesn't exist)
