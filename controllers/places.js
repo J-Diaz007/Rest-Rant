@@ -2,7 +2,7 @@
 //This allows us to keep our index.js file clean & simple
 const router = require('express').Router()
 
-
+//Index page
 router.get('/', (req, res) => {
     let places = [{
         name: 'H-Thai-ML',
@@ -21,4 +21,10 @@ router.get('/', (req, res) => {
     res.render('places/index', { places })
 })
 
+//New Submission Page
+router.get('/new', (req, res) => {
+  res.render('places/new')
+})
+
 module.exports = router
+
