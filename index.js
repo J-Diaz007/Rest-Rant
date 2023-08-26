@@ -12,6 +12,10 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 
 
+//"body parser"
+app.use(express.urlencoded({ extended: true }))
+
+
 //Imports the router from the places.js file
 //Controllers & Routes
 app.use('/places', require('./controllers/places'))

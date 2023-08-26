@@ -26,5 +26,13 @@ router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
+
+//Using the POST verb so the data get encrypted for its trip across the internet (safe for passwords and logins)
+router.post('/', (req, res) => {
+  console.log(req.body)
+  res.send('POST /places')
+})
+
+
 module.exports = router
 
