@@ -12,7 +12,10 @@ function Def (html) {
                 <link rel="stylesheet" href="/css/style.css"/>
             </head>
             <body>
-                {html.children}
+                <div className='content'>
+                    {html.children}
+                </div>
+                <footer className='footer'></footer>
             </body>
         </html>
     )
