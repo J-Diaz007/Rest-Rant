@@ -13,6 +13,20 @@ router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
+//Show Route
+router.get('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.render('places/show', { place: places[id] })
+  }
+})
+
 
 //Using the POST verb so the data get encrypted for its trip across the internet (safe for passwords and logins)
 //Below code will give a default town and picture if one is not provided
