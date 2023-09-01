@@ -1,6 +1,5 @@
 //Imports React
 const React = require('react')
-
 //Imports the default "skeleton"
 const Def = require('../default')
 
