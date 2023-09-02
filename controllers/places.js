@@ -6,13 +6,13 @@ const db = require('../models')
 //INDEX ROUTE
 router.get('/', (req, res) => {
     db.Place.find()
-    .then((places) => {
-      res.render('places/index', { places })
-    })
-    .catch(err => {
-      console.log(err) 
-      res.render('error404')
-    })
+      .then((places) => {
+        res.render('places/index', { places })
+      })
+      .catch(err => {
+        console.log(err) 
+        res.render('error404')
+      })
 })
 
 //INDEX POST ROUTE
@@ -22,8 +22,18 @@ router.post('/', (req, res) => {
       res.redirect('/places')
   })
   .catch(err => {
-      console.log('err', err)
-      res.render('error404')
+    if (err && err.name == 'ValidationError') {
+      let message = 'Validation Error: '
+      for (var field in err.errors) {
+          message += `${field} was ${err.errors[field].value}. `
+          message += `${err.errors[field].message}`
+      }
+      console.log('Validation error message', message)
+      res.render('places/new', { message })
+    }
+    else {
+        res.render('error404')
+    }
   })
 })
 
@@ -35,13 +45,13 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
-  .then(place => {
-      res.render('places/show', { place })
-  })
-  .catch(err => {
-      console.log('err', err)
-      res.render('error404')
-  })
+    .then(place => {
+        res.render('places/show', { place })
+    })
+    .catch(err => {
+        console.log('err', err)
+        res.render('error404')
+    })
 })
 
 
@@ -160,21 +170,21 @@ module.exports = router
 //Using the POST verb so the data get encrypted for its trip across the internet (safe for passwords and logins)
 //Below code will give a default town and picture if one is not provided
 //res.redirect at the bottom redirects to the index route to see the newly added place
-router.post('/', (req, res) => {
-  if (!req.body.pic) {
-    // Default image if one is not provided
-    req.body.pic = 'http://placekitten.com/400/400'
-  }
-  if (!req.body.city) {
-    req.body.city = 'Anytown'
-  }
-  if (!req.body.state) {
-    req.body.state = 'USA'
-  }
-  places.push(req.body)
-  res.redirect('/places')
-})
+// router.post('/', (req, res) => {
+//   if (!req.body.pic) {
+//     // Default image if one is not provided
+//     req.body.pic = 'http://placekitten.com/400/400'
+//   }
+//   if (!req.body.city) {
+//     req.body.city = 'Anytown'
+//   }
+//   if (!req.body.state) {
+//     req.body.state = 'USA'
+//   }
+//   places.push(req.body)
+//   res.redirect('/places')
+// })
 
 
-module.exports = router
+// module.exports = router
 
