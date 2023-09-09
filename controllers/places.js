@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
       })
 })
 
+//Using the POST verb so the data gets encrypted for its trip across the internet (safe for passwords and logins)
 //INDEX POST ROUTE
 router.post('/', (req, res) => {
   db.Place.create(req.body)
@@ -22,18 +23,8 @@ router.post('/', (req, res) => {
       res.redirect('/places')
   })
   .catch(err => {
-    if (err && err.name == 'ValidationError') {
-      let message = 'Validation Error: '
-      for (var field in err.errors) {
-          message += `${field} was ${err.errors[field].value}. `
-          message += `${err.errors[field].message}`
-      }
-      console.log('Validation error message', message)
-      res.render('places/new', { message })
-    }
-    else {
-        res.render('error404')
-    }
+      console.log('err', err)
+      res.render('error404')
   })
 })
 
@@ -45,13 +36,13 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
-    .then(place => {
-        res.render('places/show', { place })
-    })
-    .catch(err => {
-        console.log('err', err)
-        res.render('error404')
-    })
+  .then(place => {
+      res.render('places/show', { place })
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
 })
 
 
@@ -77,7 +68,9 @@ router.delete('/:id/rant/:rantId', (req, res) => {
 
 module.exports = router
 
-
+router.get('/:id', (req, res) => {
+  res.render('places/show')
+})
 
 
 ///////////////////////////////////////////////////////////////
@@ -166,10 +159,8 @@ module.exports = router
 
 
 
-
-//Using the POST verb so the data get encrypted for its trip across the internet (safe for passwords and logins)
-//Below code will give a default town and picture if one is not provided
-//res.redirect at the bottom redirects to the index route to see the newly added place
+// // Below code will give a default town and picture if one is not provided
+// // res.redirect at the bottom redirects to the index route to see the newly added place
 // router.post('/', (req, res) => {
 //   if (!req.body.pic) {
 //     // Default image if one is not provided
