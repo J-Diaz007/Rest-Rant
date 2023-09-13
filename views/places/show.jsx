@@ -7,10 +7,22 @@ function show (data) {
       No comments yet!
     </h3>
   )
+  let rating = (
+    <h3 className="inactive">
+      Not yet rated
+    </h3>
+  )
   if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = sumRatings / data.place.comments.length
+    rating = (
+      <h3>{Math.round(averageRating)} stars</h3>
+    )
     comments = data.place.comments.map(c => {
       return (
-        <div className="border">
+        <div className="border col-sm-4">
           <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
           <h4>{c.content}</h4>
           <h3>
@@ -32,7 +44,7 @@ function show (data) {
           </div>
           <div className="col-sm-6">
             <h2>Rating</h2>
-            <p>Currently unrated.</p>
+            <p>{rating}</p>
             <br />
             <h2>Description</h2>
             <h3>{ data.place.showEstablished() }</h3>
@@ -59,3 +71,6 @@ module.exports = show
 
 {/*className btn btn-danger shows the button in red 
 className btn btn-warning shows the button in orange */}
+
+
+  
