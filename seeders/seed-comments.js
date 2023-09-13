@@ -25,3 +25,27 @@ async function seed() {
 
 seed()
 
+
+// async function seed() {
+//     // Get the place, H-Thai-ML
+//     let place = await db.Place.findOne({ name: 'Coding Cat Cafe' })
+
+//     // Create a fake sample comment.
+//     let comment = await db.Comment.create({
+//         author: 'Jane Doe',
+//         rant: true,
+//         stars: 5.0,
+//         content: 'Great coffee and cute environment!'
+//     })
+
+//     // Add that comment to the place's comment array.
+//     place.comments.push(comment.id)
+
+//     //save the place now that it has comment
+//     await place.save()
+    
+//     // Exit the program
+//     process.exit()
+// }
+
+// seed()

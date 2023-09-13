@@ -44,6 +44,7 @@ router.get('/new', (req, res) => {
 })
 
 
+//Route that loads the show page
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
     .populate('comments')

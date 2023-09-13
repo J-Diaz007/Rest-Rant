@@ -1,7 +1,8 @@
 //Requires mongoose
 const mongoose = require('mongoose')
 //Instantiates a new Schema
-let commentSchema = new mongoose.Schema({
+let commentSchema = new mongoose.Schema(
+    {
     author: { type: String, default: 'Anonymous' },
     rant: { type: Boolean, default: false },
     stars: { type: Number, required: true },
